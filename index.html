@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+        <title>Palm VPN — Личный кабинет</title>
+        <link rel="stylesheet" href="/app.css?v=20261015" />
+        <link rel="stylesheet" href="/ios.css?v=20261019-3" />
+        <link rel="preload" as="image" href="/robot-256.webp" />
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    </head>
+    <body>
+        <!-- Загрузка -->
+        <div id="screen-boot" class="boot">
+            <!-- Появление анимируем на обёртке и только по opacity: transform
+                 на самой анимированной картинке заставлял браузер
+                 перерастеризовывать каждый её кадр — отсюда и подлагивание. -->
+            <div class="boot-emoji-wrap">
+                <img
+                    src="/robot-256.webp"
+                    alt=""
+                    width="112"
+                    height="112"
+                    class="boot-emoji"
+                    decoding="async"
+                    fetchpriority="high"
+                />
+            </div>
+            <div class="boot-txt">Загружаем кабинет…</div>
+        </div>
+
+        <!-- Ошибка -->
+        <div id="screen-error" class="boot hidden">
+            <div class="boot-logo err">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 8v4M12 16h.01" />
+                </svg>
+            </div>
+            <div class="boot-txt" id="error-text">Что-то пошло не так</div>
+            <button class="btn btn-ghost mt16" id="btn-reload">Обновить</button>
+        </div>
+
+        <!-- Кабинет -->
+        <div id="screen-app" class="hidden">
+            <main class="wrap">
+                <div class="page-heading"><span class="eyebrow">PALM VPN / ЛИЧНЫЙ КАБИНЕТ</span><h1 id="page-title">Ваше подключение</h1></div>
+                <div id="pending-payment" class="card hidden" aria-live="polite"></div>
+                <!-- ГЛАВНАЯ -->
+                <section class="tab" id="tab-home"></section>
+
+                <!-- УСТРОЙСТВА -->
+                <section class="tab hidden" id="tab-devices"></section>
+
+                <!-- ПРОДЛИТЬ -->
+                <section class="tab hidden" id="tab-extend"></section>
+
+                <!-- ПРОФИЛЬ -->
+                <section class="tab hidden" id="tab-profile"></section>
+            </main>
+
+            <nav class="bnav" aria-label="Разделы кабинета">
+                <button class="bnav-item active" data-tab="home">
+                    <i data-lucide="house" aria-hidden="true"></i>
+                    <span>Главная</span>
+                </button>
+                <button class="bnav-item" data-tab="devices">
+                    <i data-lucide="smartphone" aria-hidden="true"></i>
+                    <span>Устройства</span>
+                </button>
+                <button class="bnav-item" data-tab="extend">
+                    <i data-lucide="calendar-plus" aria-hidden="true"></i>
+                    <span id="nav-plan-label">Тариф</span>
+                </button>
+                <button class="bnav-item" data-tab="profile">
+                    <i data-lucide="circle-user-round" aria-hidden="true"></i>
+                    <span>Профиль</span>
+                </button>
+            </nav>
+        </div>
+
+        <div id="toast" class="toast" role="status"></div>
+        <script src="/lucide.min.js"></script>
+        <script src="/app.js?v=20261019-4"></script>
+    </body>
+</html>
